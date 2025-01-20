@@ -10,9 +10,6 @@ class landingPage():
         self.wait = WebDriverWait(self.driver, 10)
         self.driver.get("https://www.landsearch.com/")
 
-    def click_login_button(self,by_method, by_locator):
-        self.driver.find_element(by_method, by_locator).click()
-
     def populate_field(self, by_method, selector, value):
         element = self.wait.until(
             EC.presence_of_element_located((by_method, selector))
