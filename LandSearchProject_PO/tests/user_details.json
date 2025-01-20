@@ -1,0 +1,6 @@
+[
+    {"login_selector": "dummy", "register_selector": "register_first_name", "value": "Dummy"},
+    {"login_selector": "dummy", "register_selector": "register_last_name", "value": "User"},
+    {"login_selector": "login_email", "register_selector": "register_email", "value": "Stclair1928@gmail.com"},
+    {"login_selector": "password", "register_selector": "password", "value": "Secret_123"}
+]
