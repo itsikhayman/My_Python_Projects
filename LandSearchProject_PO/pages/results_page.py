@@ -3,6 +3,7 @@ from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from LandSearchProject_PO.common.utils import utils
 
 class resultsPage():
     def __init__(self, driver):  # constructor
@@ -63,15 +64,7 @@ class resultsPage():
                 csv_writer.writerow(field_values) # add the scraped data to csv
                 #csv_file.flush() #Remark in real time
                 if counter == 3:
-                    winsound.PlaySound('tada.wav', winsound.SND_FILENAME)  # play finish ringtone
+                    utils.play_sound("tada.wav")  # play finish ringtone
                     return csv_file_name
                     break   # break from for
                 counter += 1
-
-    def open_csv_file(self, csv_file_name):
-        full_path = os.path.abspath(csv_file_name)
-        csv_link = f'file://{full_path}'
-        print(f'\noutput_scraping_csv_file: {csv_link}')
-        user_input = input("\nWould you like to open the CSV file? (type 'y' for yes): ")
-        if user_input == 'y':
-            webbrowser.open(csv_link) # open the csv file on screen

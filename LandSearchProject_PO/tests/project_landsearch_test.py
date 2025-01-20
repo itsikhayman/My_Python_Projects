@@ -2,6 +2,7 @@ import time
 from LandSearchProject_PO.pages.landing_page import landingPage
 from LandSearchProject_PO.pages.results_page import resultsPage
 from LandSearchProject_PO.tests.SeleniumBasePage import seleniumBasePage
+from LandSearchProject_PO.common.utils import utils
 
 
 class projectLandsearchTest:
@@ -22,6 +23,6 @@ class projectLandsearchTest:
     result_page.toggle_dark_mode()  # toggle dark mode
     property_list = result_page.gather_properties_list()  # create property list
     csv_file_name = result_page.scrape_data_from_property_list(property_list)  # scrape data to csv file
-    result_page.open_csv_file(csv_file_name) # present the csv file to user
+    utils.open_csv_file(csv_file_name) # present the csv file to user
 
     base.selenium_end(driver)
