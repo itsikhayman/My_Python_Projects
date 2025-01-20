@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class landingPage():
     def __init__(self, driver):  # constructor
-        self.driver = driver   # every call to the functions need to deliver driver
+        self.driver = driver   #every call to the functions need to deliver driver
         self.wait = WebDriverWait(self.driver, 10)
         self.driver.get("https://www.landsearch.com/")
 
