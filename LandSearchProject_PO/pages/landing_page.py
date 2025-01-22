@@ -10,7 +10,7 @@ class landingPage():
         self.wait = WebDriverWait(self.driver, 10)
         self.driver.get("https://www.landsearch.com/")
 
-    def populate_field(self, by_method, selector, value):
+    def populate_field(self, by_method, selector, value): # wait for the element to be present and populate the field
         element = self.wait.until(
             EC.presence_of_element_located((by_method, selector))
         )
@@ -22,10 +22,10 @@ class landingPage():
         )
         element.click()
 
-    def keyboard_function(self, by_method, selector, key):
+    def keystroke_function(self, by_method, selector, key):
         self.driver.find_element(by_method, selector).send_keys(key)
 
-    def toggle_dark_mode(self):
+    def landing_toggle_dark_mode(self):
         dark_mode_buttons_set = self.driver.find_elements(By.CSS_SELECTOR,'div[class*="header-dark"]')
         for button in dark_mode_buttons_set:
             if button.get_attribute('title') == 'Toggle dark mode':  # Adjust condition as needed
@@ -44,7 +44,7 @@ class landingPage():
             self.populate_field(By.ID, field['register_selector'], field['value'])
         self.click_function(By.CLASS_NAME, "switch.g-s-3")  # switch checkbox to professional
         self.click_function(By.CLASS_NAME, "g-f")  # click signup
-        self.keyboard_function(By.TAG_NAME, "body", Keys.ESCAPE) #close signup popup
+        self.keystroke_function(By.TAG_NAME, "body", Keys.ESCAPE) #close signup popup
 
     def login_to_site(self, user_details_json_file):
         # Click the 'Log in' button
@@ -58,7 +58,10 @@ class landingPage():
                 self.populate_field(By.ID, field['login_selector'], field['value'])
             elif field['login_selector'] == 'password':
                 self.populate_field(By.ID, field['login_selector'], field['value'])
-        self.keyboard_function(By.ID, "password", Keys.RETURN)  # click enter to continue
+        self.keystroke_function(By.ID, "password", Keys.RETURN)  # click enter to continue
+        welcome_message = self.driver.find_element(By.CLASS_NAME, "flash.-success")
+        # assert to check the login made successful
+        assert welcome_message.is_displayed(), "Welcome message not displayed - Login failed"
         time.sleep(1)
 
     def click_search_button(self):
